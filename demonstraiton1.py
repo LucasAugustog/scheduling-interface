@@ -25,15 +25,15 @@ cursorSQLBusiness = conn_business.cursor()
 
 
 # ======================== JOBS ========================
-def job_updateTabela_vendasEmpSegCgoCateg(data_inicio=None, data_fim=None):
-    if data_inicio is None:
-        data_inicio = datetime.date.today().strftime("%d/%m/%Y")
-    if data_fim is None:
-        data_fim = datetime.date.today().strftime("%d/%m/%Y")
+def job_updateTabela_vendasEmpSegCgoCateg(start_date=None, end_date=None):
+    if start_date is None:
+        start_date = datetime.date.today().strftime("%d/%m/%Y")
+    if end_date is None:
+        end_date = datetime.date.today().strftime("%d/%m/%Y")
     
-    data_fim = datetime.datetime.strptime(data_fim, "%d/%m/%Y")
-    data_fim += datetime.timedelta(days=1)
-    data_fim = data_fim.strftime("%d/%m/%Y")
+    end_date = datetime.datetime.strptime(end_date, "%d/%m/%Y")
+    end_date += datetime.timedelta(days=1)
+    end_date = end_date.strftime("%d/%m/%Y")
         
     conn_business1 = mysql.connector.connect(host="localhost", user="root", password="", database="InterfaceJobs")
     cursorSQLBusiness1 = conn_business1.cursor()
@@ -41,23 +41,23 @@ def job_updateTabela_vendasEmpSegCgoCateg(data_inicio=None, data_fim=None):
     #connection1 = oracledb.connect(user="", password="", dsn="")
     #cursorOracle1 = connection1.cursor()
     
-    sql = """select value from integrator_parameter where description like 'vendasEmpSegCgoCateg'"""
+    sql = """select value from integrator_parameter where description like 'Sales'"""
     cursorSQLBusiness1.execute(sql)
     result_sql = cursorSQLBusiness1.fetchall()
     result_sql = str(result_sql).replace("[(", "").replace(",)]", "").replace("'", "")
     integrator_parameter = (result_sql)
 
     if str(integrator_parameter) == "1":
-        print("Iniciando coleta para tabela Vendas vendasEmpSegCgoCateg...")
+        print("Starting collection for table Vendas Sales...")
 
         #Lógica da conexão ao banco Oracle e inserção no banco MySQL removida
 
-        print("Finalizado coleta para tabela Vendas vendasEmpSegCgoCateg")
+        print("Finished collecting for table  Vendas Sales")
 
 
     if str(integrator_parameter) == "0":
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print(f"⚠ [{now}] [JOB] INATIVADO : job_updateTabela_vendasEmpSegCgoCateg")
+        print(f"⚠ [{now}] [JOB] INactivated : Sales")
 
     cursorSQLBusiness1.close()
     conn_business1.close()
@@ -66,15 +66,15 @@ def job_updateTabela_vendasEmpSegCgoCateg(data_inicio=None, data_fim=None):
     #connection1.close()
 
 #Base quando precisa criar um novo
-def job_updateTabela_Integrado5(data_inicio=None, data_fim=None):
-    if data_inicio is None:
-        data_inicio = datetime.date.today().strftime("%d/%m/%Y")
-    if data_fim is None:
-        data_fim = datetime.date.today().strftime("%d/%m/%Y")
+def job_updateTabela_Integrado5(start_date=None, end_date=None):
+    if start_date is None:
+        start_date = datetime.date.today().strftime("%d/%m/%Y")
+    if end_date is None:
+        end_date = datetime.date.today().strftime("%d/%m/%Y")
     
-    data_fim = datetime.datetime.strptime(data_fim, "%d/%m/%Y")
-    data_fim += datetime.timedelta(days=1)
-    data_fim = data_fim.strftime("%d/%m/%Y")
+    end_date = datetime.datetime.strptime(end_date, "%d/%m/%Y")
+    end_date += datetime.timedelta(days=1)
+    end_date = end_date.strftime("%d/%m/%Y")
 
     #conn_business = mysql.connector.connect(host="localhost", user="root", password="", database="InterfaceJobs")
     #cursorSQLBusiness = conn_business.cursor()
@@ -95,17 +95,17 @@ def job_updateTabela_Integrado5(data_inicio=None, data_fim=None):
 
     if str(integrator_parameter) == "0":
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print(f"⚠ [{now}] [JOB] INATIVADO : job_updateTabela_vendasEmpSegCgoCateg")
+        print(f"⚠ [{now}] [JOB] INactivated : Integrador5")
 
-def job_updateTabela_vendaCheckout(data_inicio=None, data_fim=None):
-    if data_inicio is None:
-        data_inicio = datetime.date.today().strftime("%d/%m/%Y")
-    if data_fim is None:
-        data_fim = datetime.date.today().strftime("%d/%m/%Y")
+def job_updateTabela_vendaCheckout(start_date=None, end_date=None):
+    if start_date is None:
+        start_date = datetime.date.today().strftime("%d/%m/%Y")
+    if end_date is None:
+        end_date = datetime.date.today().strftime("%d/%m/%Y")
     
-    data_fim = datetime.datetime.strptime(data_fim, "%d/%m/%Y")
-    data_fim += datetime.timedelta(days=1)
-    data_fim = data_fim.strftime("%d/%m/%Y")
+    end_date = datetime.datetime.strptime(end_date, "%d/%m/%Y")
+    end_date += datetime.timedelta(days=1)
+    end_date = end_date.strftime("%d/%m/%Y")
 
     conn_business2 = mysql.connector.connect(host="localhost", user="root", password="", database="InterfaceJobs")
     cursorSQLBusiness2 = conn_business2.cursor()
@@ -113,22 +113,22 @@ def job_updateTabela_vendaCheckout(data_inicio=None, data_fim=None):
     #connection2 = oracledb.connect(user="", password="", dsn="")
     #cursorOracle2 = connection2.cursor()
         
-    sql = """select value from integrator_parameter where description like 'vendaCheckout' """
+    sql = """select value from integrator_parameter where description like 'Sales Checkouts' """
     cursorSQLBusiness2.execute(sql)
     result_sql = cursorSQLBusiness2.fetchall()
     result_sql = str(result_sql).replace("[(", "").replace(",)]", "").replace("'", "")
     integrator_parameter = (result_sql)
 
     if str(integrator_parameter) == "1":
-        print("Iniciando coleta para tabela Vendas vendaCheckout...")
+        print("Starting collection for table Vendas Sales Checkouts...")
         
         #Lógica da conexão ao banco Oracle e inserção no banco MySQL removida
         
-        print("Finalizado coleta para tabela Vendas vendaCheckout")
+        print("Finished collecting for table  Vendas Sales Checkouts")
 
     if str(integrator_parameter) == "0":
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print(f"⚠ [{now}] [JOB] INATIVADO : job_updateTabela_vendasEmpSegCgoCateg")
+        print(f"⚠ [{now}] [JOB] INactivated : Sales Checkouts")
 
     cursorSQLBusiness2.close()
     conn_business2.close()
@@ -136,38 +136,38 @@ def job_updateTabela_vendaCheckout(data_inicio=None, data_fim=None):
     #cursorOracle2.close()
     #connection2.close()
 
-def job_updateTabela_vendaFormaPagamento(data_inicio=None, data_fim=None):
-    if data_inicio is None:
-        data_inicio = datetime.date.today().strftime("%d/%m/%Y")
-    if data_fim is None:
-        data_fim = datetime.date.today().strftime("%d/%m/%Y")
+def job_updateTabela_vendaFormaPagamento(start_date=None, end_date=None):
+    if start_date is None:
+        start_date = datetime.date.today().strftime("%d/%m/%Y")
+    if end_date is None:
+        end_date = datetime.date.today().strftime("%d/%m/%Y")
     
-    data_fim = datetime.datetime.strptime(data_fim, "%d/%m/%Y")
-    data_fim += datetime.timedelta(days=1)
-    data_fim = data_fim.strftime("%d/%m/%Y")
+    end_date = datetime.datetime.strptime(end_date, "%d/%m/%Y")
+    end_date += datetime.timedelta(days=1)
+    end_date = end_date.strftime("%d/%m/%Y")
 
     conn_business3 = mysql.connector.connect(host="localhost", user="root", password="", database="InterfaceJobs")
     cursorSQLBusiness3 = conn_business3.cursor()
 
-    connection3 = oracledb.connect(user="", password="", dsn="")
-    cursorOracle3 = connection3.cursor()
+    #connection3 = oracledb.connect(user="", password="", dsn="")
+    #cursorOracle3 = connection3.cursor()
 
-    sql = """select value from integrator_parameter where description like 'vendaFormaPagamento' """
+    sql = """select value from integrator_parameter where description like 'Sale Payment Method' """
     cursorSQLBusiness3.execute(sql)
     result_sql = cursorSQLBusiness3.fetchall()
     result_sql = str(result_sql).replace("[(", "").replace(",)]", "").replace("'", "")
     integrator_parameter = (result_sql)
 
     if str(integrator_parameter) == "1":
-        print("Iniciando coleta para tabela Vendas vendaFormaPagamento...")
+        print("Starting collection for table Sale Payment Method...")
         
         #Lógica da conexão ao banco Oracle e inserção no banco MySQL removida
 
-        print("Finalizado coleta para tabela Vendas vendaFormaPagamento...")
+        print("Finished collecting for table Sale Payment Method...")
 
     if str(integrator_parameter) == "0":
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print(f"⚠ [{now}] [JOB] INATIVADO : job_updateTabela_vendasEmpSegCgoCateg")
+        print(f"⚠ [{now}] [JOB] INactivated : Sale Payment Method")
 
     cursorSQLBusiness3.close()
     conn_business3.close()
@@ -175,15 +175,15 @@ def job_updateTabela_vendaFormaPagamento(data_inicio=None, data_fim=None):
     #cursorOracle3.close()
     #connection3.close()
 
-def job_updateTabela_auditoriaPdv(data_inicio=None, data_fim=None):
-    if data_inicio is None:
-        data_inicio = datetime.date.today().strftime("%d/%m/%Y")
-    if data_fim is None:
-        data_fim = datetime.date.today().strftime("%d/%m/%Y")
+def job_updateTabela_auditoriaPdv(start_date=None, end_date=None):
+    if start_date is None:
+        start_date = datetime.date.today().strftime("%d/%m/%Y")
+    if end_date is None:
+        end_date = datetime.date.today().strftime("%d/%m/%Y")
     
-    data_fim = datetime.datetime.strptime(data_fim, "%d/%m/%Y")
-    data_fim += datetime.timedelta(days=1)
-    data_fim = data_fim.strftime("%d/%m/%Y")
+    end_date = datetime.datetime.strptime(end_date, "%d/%m/%Y")
+    end_date += datetime.timedelta(days=1)
+    end_date = end_date.strftime("%d/%m/%Y")
 
     
 
@@ -194,22 +194,22 @@ def job_updateTabela_auditoriaPdv(data_inicio=None, data_fim=None):
     #cursorOracle4 = connection4.cursor()
 
 
-    sql = """select value from integrator_parameter where description like 'auditoriaPdv' """
+    sql = """select value from integrator_parameter where description like 'audit Pdv' """
     cursorSQLBusiness4.execute(sql)
     result_sql = cursorSQLBusiness4.fetchall()
     result_sql = str(result_sql).replace("[(", "").replace(",)]", "").replace("'", "")
     integrator_parameter = (result_sql)
 
     if str(integrator_parameter) == "1":
-        print("Iniciando coleta para tabela Vendas auditoriaPdv...")
+        print("Starting collection for table audit Pdv...")
         
         #Lógica da conexão ao banco Oracle e inserção no banco MySQL removida
 
-        print("Finalizado coleta para tabela Vendas auditoriaPdv")
+        print("Finished collecting for table audit Pdv")
 
     if str(integrator_parameter) == "0":
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print(f"⚠ [{now}] [JOB] INATIVADO : job_updateTabela_vendasEmpSegCgoCateg")
+        print(f"⚠ [{now}] [JOB] INactivated : audit Pdv")
 
     
     cursorSQLBusiness4.close()
@@ -218,15 +218,15 @@ def job_updateTabela_auditoriaPdv(data_inicio=None, data_fim=None):
     #cursorOracle4.close()
     #connection4.close()
 
-def job_updateTabela_minhaGestaoReposicao(data_inicio=None, data_fim=None):
-    if data_inicio is None:
-        data_inicio = datetime.date.today().strftime("%d/%m/%Y")
-    if data_fim is None:
-        data_fim = datetime.date.today().strftime("%d/%m/%Y")
+def job_updateTabela_minhaGestaoReposicao(start_date=None, end_date=None):
+    if start_date is None:
+        start_date = datetime.date.today().strftime("%d/%m/%Y")
+    if end_date is None:
+        end_date = datetime.date.today().strftime("%d/%m/%Y")
     
-    data_fim = datetime.datetime.strptime(data_fim, "%d/%m/%Y")  # Corrigido!
-    data_fim += datetime.timedelta(days=1)  # Usa datetime.timedelta
-    data_fim = data_fim.strftime("%d/%m/%Y")
+    end_date = datetime.datetime.strptime(end_date, "%d/%m/%Y")  # Corrigido!
+    end_date += datetime.timedelta(days=1)  # Usa datetime.timedelta
+    end_date = end_date.strftime("%d/%m/%Y")
 
     conn_business5 = mysql.connector.connect(host="localhost", user="root", password="", database="InterfaceJobs")
     cursorSQLBusiness5 = conn_business5.cursor()
@@ -234,22 +234,22 @@ def job_updateTabela_minhaGestaoReposicao(data_inicio=None, data_fim=None):
     #connection5 = oracledb.connect(user="", password="", dsn="")
     #cursorOracle5 = connection5.cursor()
         
-    sql = """select value from integrator_parameter where description like 'Reposição' """
+    sql = """select value from integrator_parameter where description like 'Replacement' """
     cursorSQLBusiness5.execute(sql)
     result_sql = cursorSQLBusiness5.fetchall()
     result_sql = str(result_sql).replace("[(", "").replace(",)]", "").replace("'", "")
     integrator_parameter = (result_sql)
 
     if str(integrator_parameter) == "1":
-        print("Iniciando coleta para tabela Minha Gestão Reposição...")
+        print("Starting collection for table Replacement...")
         
         #Lógica da conexão ao banco Oracle e inserção no banco MySQL removida
 
-        print("Finalizado coleta para tabela Minha Gestão Reposição")
+        print("Finished collecting for table Replacement")
 
     if str(integrator_parameter) == "0":
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print(f"⚠ [{now}] [JOB] INATIVADO : job_updateTabela_vendasEmpSegCgoCateg")
+        print(f"⚠ [{now}] [JOB] INactivated : Replacement")
 
     cursorSQLBusiness5.close()
     conn_business5.close()
@@ -257,15 +257,15 @@ def job_updateTabela_minhaGestaoReposicao(data_inicio=None, data_fim=None):
     #cursorOracle5.close()
     #connection5.close()
 
-def job_updateTabela_minhaGestaoAtividade(data_inicio=None, data_fim=None):
-    if data_inicio is None:
-        data_inicio = datetime.date.today().strftime("%d/%m/%Y")
-    if data_fim is None:
-        data_fim = datetime.date.today().strftime("%d/%m/%Y")
+def job_updateTabela_minhaGestaoAtividade(start_date=None, end_date=None):
+    if start_date is None:
+        start_date = datetime.date.today().strftime("%d/%m/%Y")
+    if end_date is None:
+        end_date = datetime.date.today().strftime("%d/%m/%Y")
     
-    data_fim = datetime.datetime.strptime(data_fim, "%d/%m/%Y") 
-    data_fim += datetime.timedelta(days=1) 
-    data_fim = data_fim.strftime("%d/%m/%Y")
+    end_date = datetime.datetime.strptime(end_date, "%d/%m/%Y") 
+    end_date += datetime.timedelta(days=1) 
+    end_date = end_date.strftime("%d/%m/%Y")
 
     conn_business6 = mysql.connector.connect(host="localhost", user="root", password="", database="InterfaceJobs")
     cursorSQLBusiness6 = conn_business6.cursor()
@@ -275,22 +275,22 @@ def job_updateTabela_minhaGestaoAtividade(data_inicio=None, data_fim=None):
 
 
 
-    sql = """select value from integrator_parameter where description like 'Atividade' """
+    sql = """select value from integrator_parameter where description like 'Activity' """
     cursorSQLBusiness6.execute(sql)
     result_sql = cursorSQLBusiness6.fetchall()
     result_sql = str(result_sql).replace("[(", "").replace(",)]", "").replace("'", "")
     integrator_parameter = (result_sql)
 
     if str(integrator_parameter) == "1":
-        print("Iniciando coleta para tabela Minha Gestão Atividade...")
+        print("Starting collection for table Activity...")
         
         #Lógica da conexão ao banco Oracle e inserção no banco MySQL removida
 
-        print("Finalizado coleta para tabela Minha Gestão Atividade")
+        print("Finished collecting for table Activity")
 
     if str(integrator_parameter) == "0":
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print(f"⚠ [{now}] [JOB] INATIVADO : job_updateTabela_vendasEmpSegCgoCateg")
+        print(f"⚠ [{now}] [JOB] INactivated : Activity")
 
     cursorSQLBusiness6.close()
     conn_business6.close()
@@ -298,41 +298,41 @@ def job_updateTabela_minhaGestaoAtividade(data_inicio=None, data_fim=None):
     #cursorOracle6.close()
     #connection6.close()
 
-def job_updateTabela_PerdasQuebras(data_inicio=None, data_fim=None):
-    if data_inicio is None:
-        data_inicio = datetime.date.today().strftime("%d/%m/%Y")
-    if data_fim is None:
-        data_fim = datetime.date.today().strftime("%d/%m/%Y")
+def job_updateTabela_PerdasQuebras(start_date=None, end_date=None):
+    if start_date is None:
+        start_date = datetime.date.today().strftime("%d/%m/%Y")
+    if end_date is None:
+        end_date = datetime.date.today().strftime("%d/%m/%Y")
 
-    data_fim_dt = datetime.datetime.strptime(data_fim, "%d/%m/%Y")
-    data_fim_dt += datetime.timedelta(days=1)
-    data_fim = data_fim_dt.strftime("%d/%m/%Y")
+    end_date_dt = datetime.datetime.strptime(end_date, "%d/%m/%Y")
+    end_date_dt += datetime.timedelta(days=1)
+    end_date = end_date_dt.strftime("%d/%m/%Y")
 
-    data_inicio2 = datetime.datetime.strptime(data_inicio, "%d/%m/%Y").strftime("%Y-%m-%d")
-    data_fim2 = data_fim_dt.strftime("%Y-%m-%d")
+    start_date2 = datetime.datetime.strptime(start_date, "%d/%m/%Y").strftime("%Y-%m-%d")
+    end_date2 = end_date_dt.strftime("%Y-%m-%d")
 
     conn_business7 = mysql.connector.connect(host="localhost", user="root", password="", database="InterfaceJobs")
     cursorSQLBusiness7 = conn_business7.cursor()
 
-    connection7 = oracledb.connect(user="", password="", dsn="")
-    cursorOracle7 = connection7.cursor()
+    #connection7 = oracledb.connect(user="", password="", dsn="")
+    #cursorOracle7 = connection7.cursor()
 
-    sql = """select value from integrator_parameter where description like 'PerdasQuebras' """
+    sql = """select value from integrator_parameter where description like 'Losses Breakages' """
     cursorSQLBusiness.execute(sql)
     result_sql = cursorSQLBusiness.fetchall()
     result_sql = str(result_sql).replace("[(", "").replace(",)]", "").replace("'", "")
     integrator_parameter = (result_sql)
 
     if str(integrator_parameter) == "1":
-        print("Iniciando coleta para tabela perdas_quebras... ")
+        print("Starting collection for table Losses Breakages... ")
         
         #Lógica da conexão ao banco Oracle e inserção no banco MySQL removida
 
-        print("Finalizado coleta de dados para tabela perdas_quebras")
+        print("Finished collecting for table Losses Breakages")
 
         if str(integrator_parameter) == "0":
             now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            print(f"⚠ [{now}] [JOB] INATIVADO : job_updateTabela_PerdasQuebras")
+            print(f"⚠ [{now}] [JOB] INactivated : Losses Breakages")
 
     cursorSQLBusiness7.close()
     conn_business7.close()
@@ -340,15 +340,15 @@ def job_updateTabela_PerdasQuebras(data_inicio=None, data_fim=None):
     #cursorOracle7.close()
     #connection7.close()
 
-def job_updateTabela_PedidosAprovadosReprovados(data_inicio=None, data_fim=None):
-    if data_inicio is None:
-        data_inicio = datetime.date.today().strftime("%d/%m/%Y")
-    if data_fim is None:
-        data_fim = datetime.date.today().strftime("%d/%m/%Y")
+def job_updateTabela_PedidosAprovadosReprovados(start_date=None, end_date=None):
+    if start_date is None:
+        start_date = datetime.date.today().strftime("%d/%m/%Y")
+    if end_date is None:
+        end_date = datetime.date.today().strftime("%d/%m/%Y")
         
-    data_fim = datetime.datetime.strptime(data_fim, "%d/%m/%Y")
-    data_fim += datetime.timedelta(days=1)  
-    data_fim = data_fim.strftime("%d/%m/%Y")
+    end_date = datetime.datetime.strptime(end_date, "%d/%m/%Y")
+    end_date += datetime.timedelta(days=1)  
+    end_date = end_date.strftime("%d/%m/%Y")
 
     conn_business8 = mysql.connector.connect(host="localhost", user="root", password="", database="InterfaceJobs")
     cursorSQLBusiness8 = conn_business8.cursor()
@@ -357,23 +357,23 @@ def job_updateTabela_PedidosAprovadosReprovados(data_inicio=None, data_fim=None)
     #cursorOracle8 = connection8.cursor()
 
 
-    sql = """select value from integrator_parameter where description like 'PedidosAprovadosReprovados' """
+    sql = """select value from integrator_parameter where description like 'Requests Approved Rejected' """
     cursorSQLBusiness8.execute(sql)
     result_sql = cursorSQLBusiness8.fetchall()
     result_sql = str(result_sql).replace("[(", "").replace(",)]", "").replace("'", "")
     integrator_parameter = (result_sql)
 
     if str(integrator_parameter) == "1":
-        print("Iniciando coleta para tabela pedidos_aprovados_reprovados...")
+        print("Starting collection for table Requests Approved Rejected...")
     
         #Lógica da conexão ao banco Oracle e inserção no banco MySQL removida
 
-        print("Finalizado coleta de dados para tabela pedidos_aprovados_reprovados") 
+        print("Finished collecting for table Requests Approved Rejected") 
         
 
     if str(integrator_parameter) == "0":
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print(f"⚠ [{now}] [JOB] INATIVADO : job_updateTabela_vendasEmpSegCgoCateg")
+        print(f"⚠ [{now}] [JOB] INactivated : Requests Approved Rejected")
 
     cursorSQLBusiness8.close()
     conn_business8.close()
@@ -381,40 +381,40 @@ def job_updateTabela_PedidosAprovadosReprovados(data_inicio=None, data_fim=None)
     #cursorOracle8.close()
     #connection8.close()
 
-def job_updateTabela_ProdutosEstoqueAtual(data_inicio=None, data_fim=None):
-    if data_inicio is None:
-        data_inicio = datetime.date.today().strftime("%d/%m/%Y")
-    if data_fim is None:
-        data_fim = datetime.date.today().strftime("%d/%m/%Y")
+def job_updateTabela_ProdutosEstoqueAtual(start_date=None, end_date=None):
+    if start_date is None:
+        start_date = datetime.date.today().strftime("%d/%m/%Y")
+    if end_date is None:
+        end_date = datetime.date.today().strftime("%d/%m/%Y")
     
-    data_fim = datetime.datetime.strptime(data_fim, "%d/%m/%Y")
-    data_fim += datetime.timedelta(days=1)
-    data_fim = data_fim.strftime("%d/%m/%Y")
+    end_date = datetime.datetime.strptime(end_date, "%d/%m/%Y")
+    end_date += datetime.timedelta(days=1)
+    end_date = end_date.strftime("%d/%m/%Y")
 
     conn_business9 = mysql.connector.connect(host="localhost", user="root", password="", database="InterfaceJobs")
     cursorSQLBusiness9 = conn_business9.cursor()
 
-    connection9 = oracledb.connect(user="", password="", dsn="")
-    cursorOracle9 = connection9.cursor()
+    #connection9 = oracledb.connect(user="", password="", dsn="")
+    #cursorOracle9 = connection9.cursor()
 
-    sql = """select value from integrator_parameter where description like 'ProdutosEstoqueAtual' """
+    sql = """select value from integrator_parameter where description like 'Products StockCurrent' """
     cursorSQLBusiness.execute(sql)
     result_sql = cursorSQLBusiness.fetchall()
     result_sql = str(result_sql).replace("[(", "").replace(",)]", "").replace("'", "")
     integrator_parameter = (result_sql)
 
     if str(integrator_parameter) == "1":
-        print("Iniciando coleta para tabela produtos_estoque_atual...")
+        print("Starting collection for table Products StockCurrent...")
         
         #Lógica da conexão ao banco Oracle e inserção no banco MySQL removida
 
-        print("Finalizado coleta de dados para tabela produtos_estoque_atual") 
+        print("Finished collecting for table  Products StockCurrent") 
         
 
 
     if str(integrator_parameter) == "0":
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print(f"⚠ [{now}] [JOB] INATIVADO : job_updateTabela_vendasEmpSegCgoCateg")
+        print(f"⚠ [{now}] [JOB] INactivated : Products StockCurrent")
 
     cursorSQLBusiness9.close()
     conn_business9.close()
@@ -422,38 +422,38 @@ def job_updateTabela_ProdutosEstoqueAtual(data_inicio=None, data_fim=None):
     #cursorOracle9.close()
     #connection9.close()
 
-def job_updateTabela_vendas_dia_lojas_simplificado(data_inicio=None, data_fim=None):
-    if data_inicio is None:
-        data_inicio = datetime.date.today().strftime("%d/%m/%Y")
-    if data_fim is None:
-        data_fim = datetime.date.today().strftime("%d/%m/%Y")
+def job_updateTabela_vendas_dia_lojas_simplificado(start_date=None, end_date=None):
+    if start_date is None:
+        start_date = datetime.date.today().strftime("%d/%m/%Y")
+    if end_date is None:
+        end_date = datetime.date.today().strftime("%d/%m/%Y")
     
-    data_fim = datetime.datetime.strptime(data_fim, "%d/%m/%Y")
-    data_fim += datetime.timedelta(days=1)
-    data_fim = data_fim.strftime("%d/%m/%Y")
+    end_date = datetime.datetime.strptime(end_date, "%d/%m/%Y")
+    end_date += datetime.timedelta(days=1)
+    end_date = end_date.strftime("%d/%m/%Y")
 
     conn_business10 = mysql.connector.connect(host="localhost", user="root", password="", database="InterfaceJobs")
     cursorSQLBusiness10 = conn_business10.cursor()
 
-    connection10 = oracledb.connect(user="", password="", dsn="")
-    cursorOracle10 = connection10.cursor()
+    #connection10 = oracledb.connect(user="", password="", dsn="")
+    #cursorOracle10 = connection10.cursor()
             
-    sql = """select value from integrator_parameter where description like 'VendaSimplificada' """
+    sql = """select value from integrator_parameter where description like 'Simplified Sale' """
     cursorSQLBusiness10.execute(sql)
     result_sql = cursorSQLBusiness10.fetchall()
     result_sql = str(result_sql).replace("[(", "").replace(",)]", "").replace("'", "")
     integrator_parameter = (result_sql)
 
     if str(integrator_parameter) == "1":
-        print("Iniciando coleta para tabela vendas_dia_lojas_simplificado...")
+        print("Starting collection for table Simplified Sale...")
         
         #Lógica da conexão ao banco Oracle e inserção no banco MySQL removida
 
-        print("Finalizado coleta de dados para tabela vendas_dia_lojas_simplificado") 
+        print("Finished collecting for table  Simplified Sale") 
 
     if str(integrator_parameter) == "0":
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print(f"⚠ [{now}] [JOB] INATIVADO : job_updateTabela_vendasEmpSegCgoCateg")
+        print(f"⚠ [{now}] [JOB] INactivated : Simplified Sale")
 
     cursorSQLBusiness10.close()
     conn_business10.close()
@@ -461,38 +461,38 @@ def job_updateTabela_vendas_dia_lojas_simplificado(data_inicio=None, data_fim=No
     #cursorOracle10.close()
     #connection10.close()
 
-def job_updateTabela_produtos_por_hora(data_inicio=None, data_fim=None):
-    if data_inicio is None:
-        data_inicio = datetime.date.today().strftime("%d/%m/%Y")
-    if data_fim is None:
-        data_fim = datetime.date.today().strftime("%d/%m/%Y")
+def job_updateTabela_produtos_por_time(start_date=None, end_date=None):
+    if start_date is None:
+        start_date = datetime.date.today().strftime("%d/%m/%Y")
+    if end_date is None:
+        end_date = datetime.date.today().strftime("%d/%m/%Y")
     
-    data_fim = datetime.datetime.strptime(data_fim, "%d/%m/%Y")
-    data_fim += datetime.timedelta(days=1)
-    data_fim = data_fim.strftime("%d/%m/%Y")
+    end_date = datetime.datetime.strptime(end_date, "%d/%m/%Y")
+    end_date += datetime.timedelta(days=1)
+    end_date = end_date.strftime("%d/%m/%Y")
 
     conn_business11 = mysql.connector.connect(host="localhost", user="root", password="", database="InterfaceJobs")
     cursorSQLBusiness11 = conn_business11.cursor()
 
-    connection11 = oracledb.connect(user="", password="", dsn="")
-    cursorOracle11 = connection11.cursor()
+    #connection11 = oracledb.connect(user="", password="", dsn="")
+    #cursorOracle11 = connection11.cursor()
         
-    sql = """select value from integrator_parameter where description like 'produtoPorHora' """
+    sql = """select value from integrator_parameter where description like 'product Per Hour' """
     cursorSQLBusiness.execute(sql)
     result_sql = cursorSQLBusiness.fetchall()
     result_sql = str(result_sql).replace("[(", "").replace(",)]", "").replace("'", "")
     integrator_parameter = (result_sql)
 
     if str(integrator_parameter) == "1":
-        print("Iniciando coleta para tabela produtos_por_hora...")
+        print("Starting collection for table product Per Hour...")
         
         #Lógica da conexão ao banco Oracle e inserção no banco MySQL removida
 
-        print("Finalizado coleta de dados para tabela produtos_por_hora") 
+        print("Finished collecting for table  product Per Hour") 
 
     if str(integrator_parameter) == "0":
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print(f"⚠ [{now}] [JOB] INATIVADO : job_updateTabela_vendasEmpSegCgoCateg")
+        print(f"⚠ [{now}] [JOB] INactivated : product Per Hour")
 
     cursorSQLBusiness11.close()
     conn_business11.close()
@@ -500,29 +500,29 @@ def job_updateTabela_produtos_por_hora(data_inicio=None, data_fim=None):
     #cursorOracle11.close()
     #connection11.close()
 
-def job_updateTabela_usuariosDjango(data_inicio=None, data_fim=None):
-    if data_inicio is None:
-        data_inicio = datetime.date.today().strftime("%d/%m/%Y")
-    if data_fim is None:
-        data_fim = datetime.date.today().strftime("%d/%m/%Y")
+def job_updateTabela_usuariosDjango(start_date=None, end_date=None):
+    if start_date is None:
+        start_date = datetime.date.today().strftime("%d/%m/%Y")
+    if end_date is None:
+        end_date = datetime.date.today().strftime("%d/%m/%Y")
     
-    data_fim = datetime.datetime.strptime(data_fim, "%d/%m/%Y")
-    data_fim += datetime.timedelta(days=1)
-    data_fim = data_fim.strftime("%d/%m/%Y")
+    end_date = datetime.datetime.strptime(end_date, "%d/%m/%Y")
+    end_date += datetime.timedelta(days=1)
+    end_date = end_date.strftime("%d/%m/%Y")
 
-    conn_Django12 = mysql.connector.connect(host="", user="", password="", database="django")
-    cursorSQLDjango12 = conn_Django12.cursor()
+    #conn_Django12 = mysql.connector.connect(host="", user="", password="", database="django")
+    #cursorSQLDjango12 = conn_Django12.cursor()
 
     #connection12 = oracledb.connect(user="", password="", dsn="")
     #cursorOracle12 = connection12.cursor()
 
 
 
-    print("Iniciando coleta para tabela usuarios...")
+    print("Starting collection for table Users...")
     
     #Lógica da conexão ao banco Oracle e inserção no banco MySQL removida
 
-    print("Finalizado coleta de dados para tabela usuarios")
+    print("Finished collecting for table  Users")
 
 
 
@@ -541,7 +541,7 @@ class RedirectTerminal:
         self.text_widget.configure(state='normal')
         if "ERROR" in string.upper():
             self.text_widget.insert(tk.END, string, 'red')
-        elif "⚠️" in string or "INATIVADO" in string.upper():
+        elif "⚠️" in string or "INactivated" in string.upper():
             self.text_widget.insert(tk.END, string, 'yellow')
         elif "⏱" in string or "⏰" in string: 
             self.text_widget.insert(tk.END, string, 'blue')
@@ -557,7 +557,7 @@ class RedirectTerminal:
 class InterfaceApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Interface de Gestão do Integrador do BI")
+        self.root.title("Scheduling Interface Python | Tkinter | MySQL | schedule threading |")
         self.root.geometry("1024x720")
 
         self.style = Style(theme="darkly")
@@ -566,31 +566,31 @@ class InterfaceApp:
         self.tabs = ttk.Notebook(root)
         self.tabs.pack(fill='both', expand=True)
 
-        self.agendamentos_salvos = {}
-        self.horarios = {}
+        self.Schedulings_salvos = {}
+        self.timerios = {}
         self.vars_toggle = {}
         self.executar_buttons = {}
         self.jobs_agendados = {}  # Para rastrear jobs agendados
-        self.data_inicio_entries = {}
-        self.data_fim_entries = {}
+        self.start_date_entries = {}
+        self.end_date_entries = {}
 
         self.funcoes_jobs = {
-            "vendasEmpSegCgoCateg": job_updateTabela_vendasEmpSegCgoCateg,
-            "vendaCheckout": job_updateTabela_vendaCheckout,
-            "vendaFormaPagamento": job_updateTabela_vendaFormaPagamento,
-            "auditoriaPdv": job_updateTabela_auditoriaPdv,
+            "Sales": job_updateTabela_vendasEmpSegCgoCateg,
+            "Sales Checkouts": job_updateTabela_vendaCheckout,
+            "Sales Payment Method": job_updateTabela_vendaFormaPagamento,
+            "audit Pdv": job_updateTabela_auditoriaPdv,
             "Integrado5": job_updateTabela_Integrado5,
-            "Atividade": job_updateTabela_minhaGestaoAtividade,
-            "Reposição": job_updateTabela_minhaGestaoReposicao,
-            "PerdasQuebras": job_updateTabela_PerdasQuebras,
-            "PedidosAprovadosReprovados": job_updateTabela_PedidosAprovadosReprovados,
-            "ProdutosEstoqueAtual": job_updateTabela_ProdutosEstoqueAtual,
-            "VendaSimplificada": job_updateTabela_vendas_dia_lojas_simplificado,
-            "produtoPorHora": job_updateTabela_produtos_por_hora,
-            "Usuarios": job_updateTabela_usuariosDjango
+            "Activity": job_updateTabela_minhaGestaoAtividade,
+            "Replacement": job_updateTabela_minhaGestaoReposicao,
+            "Losses Breakages": job_updateTabela_PerdasQuebras,
+            "Requests Approved Rejected": job_updateTabela_PedidosAprovadosReprovados,
+            "Products Stock Current": job_updateTabela_ProdutosEstoqueAtual,
+            "Simplified Sales": job_updateTabela_vendas_dia_lojas_simplificado,
+            "Product Per Hour": job_updateTabela_produtos_por_time,
+            "Users": job_updateTabela_usuariosDjango
         }
 
-        abas = ["Vendas", "Minha Gestão", "Estoque", "Financeiro", "Produtos", "Pedidos", "Auditoria", "Usuarios"]
+        abas = ["Sales", "My Management", "Stock", "Products", "Orders", "Audit", "Users"]
         for nome in abas:
             self.criar_aba(nome)
 
@@ -604,7 +604,7 @@ class InterfaceApp:
             cursorSQLBusiness.execute("SELECT id, description, value FROM integrator_parameter")
             resultados = cursorSQLBusiness.fetchall()
             
-            print("Carregando parâmetros do integrador...")
+            print("Loading integrator parameters...")
             for id, description, value in resultados:
                 if description in self.vars_toggle:
                     self.vars_toggle[description].set(int(value))
@@ -615,16 +615,16 @@ class InterfaceApp:
                         else:
                             self.executar_buttons[description].pack_forget()
                     
-                    print(f"✅ Parâmetro carregado: {description} = {value}")
+                    print(f"✅ Loaded parameter: {description} = {value}")
                 else:
-                    print(f"⚠️ Parâmetro não encontrado na interface: {description}")
+                    print(f"⚠️ Parameter not found in interface: {description}")
                     
         except Exception as e:
-            print(f"⚠️ Erro ao carregar parâmetros do integrador: {e}")
+            print(f"⚠️ Error loading integrator parameters: {e}")
 
     def carregar_parametros_agendador(self):
         try:
-            # Limpar agendamentos existentes
+            # Limpar Schedulings existentes
             schedule.clear()
             self.jobs_agendados.clear()
             
@@ -635,72 +635,71 @@ class InterfaceApp:
             resultados = cursorSQLBusiness.fetchall()
 
             # Limpar Listbox
-            for listbox in self.horarios.values():
+            for listbox in self.timerios.values():
                 listbox.delete(0, tk.END)
-            for chave in self.agendamentos_salvos:
-                self.agendamentos_salvos[chave] = []
+            for chave in self.Schedulings_salvos:
+                self.Schedulings_salvos[chave] = []
 
             for description, scheduling_type, value in resultados:
-                agendamento = f"{scheduling_type}: {value}"
+                Scheduling = f"{scheduling_type}: {value}"
 
                 # Atualizar interface
-                if description in self.horarios:
-                    listbox = self.horarios[description]
-                    listbox.insert(tk.END, agendamento)
-                    self.agendamentos_salvos[description].append(agendamento)
+                if description in self.timerios:
+                    listbox = self.timerios[description]
+                    listbox.insert(tk.END, Scheduling)
+                    self.Schedulings_salvos[description].append(Scheduling)
                 else:
-                    print(f"Descrição '{description}' não encontrada em self.horarios")
+                    print(f"Description '{description}' not found in self.timerios")
 
                 # Agendar execução
                 if description in self.funcoes_jobs:
                     funcao = self.funcoes_jobs[description]
                     try:
-                        if scheduling_type == "A Cada Hora":
+                        if scheduling_type == "Every hour":
                             try:
-                                horas = int(value.split(':')[0])  # Pega a parte das horas
-                                minutos = int(value.split(':')[1]) if len(value.split(':')) > 1 else 0
-                                segundos = int(value.split(':')[2]) if len(value.split(':')) > 2 else 0
+                                times = int(value.split(':')[0])
+                                minutes = int(value.split(':')[1]) if len(value.split(':')) > 1 else 0
+                                seconds = int(value.split(':')[2]) if len(value.split(':')) > 2 else 0
                                 
-                                intervalo = horas + minutos/60 + segundos/3600
-                                if intervalo <= 0:
-                                    print(f"⚠️ Intervalo inválido para '{description}': {value}")
+                                interval = times + minutes/60 + seconds/3600
+                                if interval <= 0:
+                                    print(f"⚠️ invalid interval for '{description}': {value}")
                                     continue
                                     
-                                job = schedule.every(intervalo).hours.do(funcao)
-                                self.jobs_agendados[agendamento] = job
-                                print(f"⏱️ Agendado '{description}' para rodar a cada {intervalo} horas.")
+                                job = schedule.every(interval).hours.do(funcao)
+                                self.jobs_agendados[Scheduling] = job
+                                print(f"⏱️ Scheduled '{description}' to run every {interval} times.")
                             except ValueError as e:
-                                print(f"⚠️ value inválido para 'A Cada Hora' em '{description}': {value} - {e}")
+                                print(f"⚠️ Invalid value for 'Every hour' in '{description}': {value} - {e}")
                                 
-                        elif scheduling_type == "Horário Fixo":
+                        elif scheduling_type == "Fixed Schedule":
                             try:
-                                # Verifica se o value está no formato HH:MM ou HH:MM:SS
                                 if re.match(r'^\d{1,2}:\d{2}(:\d{2})?$', value):
-                                    partes = value.split(':')
-                                    hora = int(partes[0])
-                                    minuto = int(partes[1])
-                                    segundo = int(partes[2]) if len(partes) > 2 else 0
+                                    parts = value.split(':')
+                                    time = int(parts[0])
+                                    minute = int(parts[1])
+                                    second = int(parts[2]) if len(parts) > 2 else 0
                                     
-                                    if hora < 0 or hora > 23 or minuto < 0 or minuto > 59 or segundo < 0 or segundo > 59:
-                                        print(f"⚠️ Horário inválido para '{description}': {value}")
+                                    if time < 0 or time > 23 or minute < 0 or minute > 59 or second < 0 or second > 59:
+                                        print(f"⚠️ Invalid time for '{description}': {value}")
                                         continue
                                         
                                     job = schedule.every().day.at(value).do(funcao)
-                                    self.jobs_agendados[agendamento] = job
-                                    print(f"⏰ Agendado '{description}' para rodar todos os dias às {value}.")
+                                    self.jobs_agendados[Scheduling] = job
+                                    print(f"⏰ Scheduled '{description}' to run every day at {value}.")
                                 else:
-                                    print(f"⚠️ Formato de horário inválido para '{description}': {value}")
+                                    print(f"⚠️ Invalid time format for '{description}': {value}")
                             except ValueError as e:
-                                print(f"⚠️ Erro ao processar horário fixo '{description}': {e}")
+                                print(f"⚠️ Error processing Fixed Schedule'{description}': {e}")
                         else:
-                            print(f"❌ Tipo de agendamento desconhecido para '{description}': {scheduling_type}")
+                            print(f"❌ Scheduling Type unknown to'{description}': {scheduling_type}")
                     except Exception as e:
-                        print(f"⚠️ Erro ao agendar '{description}': {e}")
+                        print(f"⚠️ Error when scheduling '{description}': {e}")
                 else:
-                    print(f"⚠️ Função '{description}' não encontrada em self.funcoes_jobs")
+                    print(f"⚠️ Function '{description}' not found in self.funcoes_jobs")
 
         except mysql.connector.Error as err:
-            print(f"Erro ao carregar agendamentos do banco de dados: {err}")
+            print(f"Error loading Schedulings from database: {err}")
             
     def salvar_integrator_parameter(self, description, value):
         try:
@@ -727,19 +726,18 @@ class InterfaceApp:
                 "INSERT INTO scheduler_parameter (description, scheduling_type, value) VALUES (%s, %s, %s)",
                 (description, tipo, value))
             conn_business.commit()
-            print(f"✅ Agendamento salvo: {description} - {tipo} - {value}")
+            print(f"✅ Scheduling salvo: {description} - {tipo} - {value}")
             
-            # Reagendar após salvar
             self.carregar_parametros_agendador()
         except Exception as e:
-            print(f"⚠️ Erro ao salvar agendamento: {e}")
+            print(f"⚠️ Erro ao salvar Scheduling: {e}")
 
-    def deletar_scheduler_parameter(self, description, agendamento_str):
+    def delete_scheduler_parameter(self, description, Scheduling_str):
         try:
-            partes = agendamento_str.split(": ")
-            if len(partes) == 2:
-                tipo = partes[0]
-                value = partes[1]
+            parts = Scheduling_str.split(": ")
+            if len(parts) == 2:
+                tipo = parts[0]
+                value = parts[1]
                 
                 cursorSQLBusiness.execute(
                     "DELETE FROM scheduler_parameter WHERE description = %s AND scheduling_type = %s AND value = %s",
@@ -747,15 +745,15 @@ class InterfaceApp:
                 conn_business.commit()
                 
                 # Cancelar o job agendado
-                if agendamento_str in self.jobs_agendados:
-                    schedule.cancel_job(self.jobs_agendados[agendamento_str])
-                    del self.jobs_agendados[agendamento_str]
+                if Scheduling_str in self.jobs_agendados:
+                    schedule.cancel_job(self.jobs_agendados[Scheduling_str])
+                    del self.jobs_agendados[Scheduling_str]
                 
-                print(f"✅ Agendamento removido: {description} - {tipo} - {value}")
+                print(f"✅ Scheduling removed: {description} - {tipo} - {value}")
                 return True
             return False
         except Exception as e:
-            print(f"⚠️ Erro ao remover agendamento: {e}")
+            print(f"⚠️ Error removing Scheduling: {e}")
             return False
 
     def validate_time_format(self, P):
@@ -773,17 +771,17 @@ class InterfaceApp:
         frame = ttk.Frame(self.tabs)
         self.tabs.add(frame, text=nome)
 
-        esquerda = ttk.LabelFrame(frame, text="Ativar ou Inativar", width=200)
-        esquerda.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
+        left = ttk.LabelFrame(frame, text="Enable or Disable", width=200)
+        left.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
 
-        direita_container = ttk.Frame(frame)
-        direita_container.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
+        right_container = ttk.Frame(frame)
+        right_container.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
 
-        direita = ttk.LabelFrame(direita_container, text="Agendamento", width=400)
-        direita.pack(fill='both', expand=True, side='left')
+        right = ttk.LabelFrame(right_container, text="Scheduling", width=400)
+        right.pack(fill='both', expand=True, side='left')
 
-        canvas = tk.Canvas(direita)
-        scrollbar = ttk.Scrollbar(direita, orient="vertical", command=canvas.yview)
+        canvas = tk.Canvas(right)
+        scrollbar = ttk.Scrollbar(right, orient="vertical", command=canvas.yview)
         scrollable_frame = ttk.Frame(canvas)
 
         scrollable_frame.bind(
@@ -802,36 +800,36 @@ class InterfaceApp:
         frame.grid_columnconfigure(0, weight=1)
         frame.grid_columnconfigure(1, weight=2)
         frame.grid_rowconfigure(0, weight=1)
+ 
+        if nome == "Sales":
+            variaveis = ["Sales", "Sales Checkouts", "Sales Payment Method", "Simplified Sales"]
 
-        if nome == "Vendas":
-            variaveis = ["vendasEmpSegCgoCateg", "vendaCheckout", "vendaFormaPagamento", "VendaSimplificada"]
+        elif nome == "My Management":
+            variaveis = ["Activity", "Replacement"]
 
-        elif nome == "Minha Gestão":
-            variaveis = ["Atividade", "Reposição"]
+        elif nome == "Stock":
+            variaveis = ["Losses Breakages", "Products StockCurrent"]
 
-        elif nome == "Estoque":
-            variaveis = ["PerdasQuebras", "ProdutosEstoqueAtual"]
+        elif nome == "Products":
+            variaveis = ["Requests Approved Rejected"] 
 
-        elif nome == "Pedidos":
-            variaveis = ["PedidosAprovadosReprovados"] 
+        elif nome == "Orders":
+            variaveis = ["productPerHour"]  
 
-        elif nome == "Produtos":
-            variaveis = ["produtoPorHora"]  
-
-        elif nome == "Usuarios":
-            variaveis = ["Usuarios"]  
+        elif nome == "Users":
+            variaveis = ["Users"]  
         
-        elif nome == "Auditoria":
-            variaveis = ["auditoriaPdv"]        
+        elif nome == "Audit":
+            variaveis = ["audit Pdv"]        
 
         else:
             variaveis = ["Integrador1", "Integrador2", "Integrador3", "Integrador4"]
 
         for var in variaveis:
-            if var not in self.agendamentos_salvos:
-                self.agendamentos_salvos[var] = []
+            if var not in self.Schedulings_salvos:
+                self.Schedulings_salvos[var] = []
 
-            frame_toggle = ttk.Frame(esquerda)
+            frame_toggle = ttk.Frame(left)
             frame_toggle.pack(fill='x', pady=5, anchor='w')
 
             toggle_frame = ttk.Frame(frame_toggle)
@@ -849,7 +847,7 @@ class InterfaceApp:
 
             btn_forcar = ttk.Button(
                 frame_toggle,
-                text="▶ Executar Agora!",
+                text="▶ Run Now!",
                 command=lambda v=var: self.forcar_execucao(v),
                 bootstyle="info-outline"
             )
@@ -857,41 +855,41 @@ class InterfaceApp:
 
             self.vars_toggle[var] = var_bool
 
-            agendamento_frame = ttk.Frame(scrollable_frame)
-            agendamento_frame.pack(fill='x', pady=5, anchor='w')
+            Scheduling_frame = ttk.Frame(scrollable_frame)
+            Scheduling_frame.pack(fill='x', pady=5, anchor='w')
 
-            label = ttk.Label(agendamento_frame, text=var)
+            label = ttk.Label(Scheduling_frame, text=var)
             label.pack(side='top', anchor='w')
 
             # Frame para datas
-            frame_datas = ttk.Frame(agendamento_frame)
+            frame_datas = ttk.Frame(Scheduling_frame)
             frame_datas.pack(fill='x', pady=5)
             
-            # Data Inicial
-            lbl_data_inicio = ttk.Label(frame_datas, text="Data Inicial:")
-            lbl_data_inicio.pack(side='left', padx=2)
+            # Initial data:
+            lbl_start_date = ttk.Label(frame_datas, text="Initial data:")
+            lbl_start_date.pack(side='left', padx=2)
             
-            data_inicio = ttk.Entry(frame_datas, width=10)
-            data_inicio.insert(0, datetime.date.today().strftime("%d/%m/%Y"))
-            data_inicio.pack(side='left', padx=2)
-            self.data_inicio_entries[var] = data_inicio
+            start_date = ttk.Entry(frame_datas, width=10)
+            start_date.insert(0, datetime.date.today().strftime("%d/%m/%Y"))
+            start_date.pack(side='left', padx=2)
+            self.start_date_entries[var] = start_date
             
-            # Data Final
-            lbl_data_fim = ttk.Label(frame_datas, text="Data Final:")
-            lbl_data_fim.pack(side='left', padx=2)
+            # End Date:
+            lbl_end_date = ttk.Label(frame_datas, text="End Date:")
+            lbl_end_date.pack(side='left', padx=2)
             
-            data_fim = ttk.Entry(frame_datas, width=10)
-            data_fim.insert(0, datetime.date.today().strftime("%d/%m/%Y"))
-            data_fim.pack(side='left', padx=2)
-            self.data_fim_entries[var] = data_fim
+            end_date = ttk.Entry(frame_datas, width=10)
+            end_date.insert(0, datetime.date.today().strftime("%d/%m/%Y"))
+            end_date.pack(side='left', padx=2)
+            self.end_date_entries[var] = end_date
 
-            combo = ttk.Combobox(agendamento_frame, values=["A Cada Hora", "Horário Fixo"])
+            combo = ttk.Combobox(Scheduling_frame, values=["Every hour", "Fixed Schedule"])
             combo.pack(side='left', padx=5)
 
             vcmd = (self.root.register(self.validate_time_format), '%P')
             
             entry = ttk.Entry(
-                agendamento_frame, 
+                Scheduling_frame, 
                 width=10,
                 validate="key",
                 validatecommand=vcmd
@@ -911,90 +909,90 @@ class InterfaceApp:
             
 
             listbox.config(yscrollcommand=listbox_scrollbar.set)
-            self.horarios[var] = listbox
+            self.timerios[var] = listbox
 
             btn_add = ttk.Button(
-                agendamento_frame, text="Adicionar",
-                command=lambda v=var, c=combo, e=entry: self.adicionar_agendamento(v, c, e)
+                Scheduling_frame, text="To Add",
+                command=lambda v=var, c=combo, e=entry: self.adicionar_Scheduling(v, c, e)
             )
             btn_add.pack(side='left', padx=5)
 
             btn_deletar = ttk.Button(
-                agendamento_frame, text="Deletar Selecionado",
-                command=lambda v=var, lb=listbox: self.deletar_agendamento(v, lb),
+                Scheduling_frame, text="Delete Selected",
+                command=lambda v=var, lb=listbox: self.deletar_Scheduling(v, lb),
                 bootstyle="danger-outline"
             )
             btn_deletar.pack(side='left', padx=5)
 
-    def deletar_agendamento(self, nome_var, listbox):
+    def deletar_Scheduling(self, nome_var, listbox):
         selecionado = listbox.curselection()
         if not selecionado:
-            messagebox.showwarning("Aviso", "Nenhum agendamento selecionado para deletar!")
+            messagebox.showwarning("Warning", "No Scheduling selected to delete!")
             return
         
         index = selecionado[0]
-        agendamento = listbox.get(index)
-        if self.deletar_scheduler_parameter(nome_var, agendamento):
+        Scheduling = listbox.get(index)
+        if self.delete_scheduler_parameter(nome_var, Scheduling):
             listbox.delete(index)
-            self.agendamentos_salvos[nome_var].remove(agendamento)
+            self.Schedulings_salvos[nome_var].remove(Scheduling)
 
     def forcar_execucao(self, nome_funcao):
         if nome_funcao in self.funcoes_jobs:
-            data_inicio = self.data_inicio_entries[nome_funcao].get()
-            data_fim = self.data_fim_entries[nome_funcao].get()
+            start_date = self.start_date_entries[nome_funcao].get()
+            end_date = self.end_date_entries[nome_funcao].get()
             
-            print(f"⚡ Iniciando execução forçada do job em thread separada: {nome_funcao}")
+            print(f"⚡ Starting forced execution of the job in a separate thread: {nome_funcao}")
             # Criar e iniciar a thread para executar o job
-            thread = threading.Thread(target=self.funcoes_jobs[nome_funcao], args=(data_inicio, data_fim), daemon=True)
+            thread = threading.Thread(target=self.funcoes_jobs[nome_funcao], args=(start_date, end_date), daemon=True)
             thread.start()
 
-    def adicionar_agendamento(self, nome_var, combo, entry):
+    def adicionar_Scheduling(self, nome_var, combo, entry):
         tipo = combo.get()
         value = entry.get()
         
         if not tipo or not value:
-            messagebox.showwarning("Aviso", "Por favor, preencha todos os campos!")
+            messagebox.showwarning("Warning", "Please fill in all fields!")
             return
             
         # Validação do formato de tempo
-        if tipo == "Horário Fixo":
+        if tipo == "Fixed Schedule":
             if not re.match(r'^\d{1,2}:\d{2}(:\d{2})?$', value):
-                messagebox.showwarning("Formato inválido", "Para Horário Fixo, use HH:MM ou HH:MM:SS")
+                messagebox.showwarning("Invalid format", "For Fixed Time, use HH:MM or HH:MM:SS")
                 return
             try:
-                partes = value.split(':')
-                hora = int(partes[0])
-                minuto = int(partes[1])
-                segundo = int(partes[2]) if len(partes) > 2 else 0
+                parts = value.split(':')
+                time = int(parts[0])
+                minute = int(parts[1])
+                second = int(parts[2]) if len(parts) > 2 else 0
                 
-                if hora < 0 or hora > 23 or minuto < 0 or minuto > 59 or segundo < 0 or segundo > 59:
-                    messagebox.showwarning("Horário inválido", "valuees fora do intervalo permitido (Hora: 0-23, Minuto/Segundo: 0-59)")
+                if time < 0 or time > 23 or minute < 0 or minute > 59 or second < 0 or second > 59:
+                    messagebox.showwarning("Invalid time", "values ​​outside the allowed range (time: 0-23, minute/second: 0-59)")
                     return
             except ValueError:
-                messagebox.showwarning("value inválido", "Por favor, insira números válidos para hora, minuto e segundo")
+                messagebox.showwarning("invalid value", "Please enter valid numbers for time, minute and second")
                 return
                 
-        elif tipo == "A Cada Hora":
+        elif tipo == "Every hour":
             if not re.match(r'^\d{1,2}:\d{2}(:\d{2})?$', value):
-                messagebox.showwarning("Formato inválido", "Para 'A Cada Hora', use HH:MM:SS")
+                messagebox.showwarning("Invalid format", "For 'Every team', use HH:MM:SS")
                 return
             try:
-                horas = int(value.split(':')[0])
-                minutos = int(value.split(':')[1]) if len(value.split(':')) > 1 else 0
-                segundos = int(value.split(':')[2]) if len(value.split(':')) > 2 else 0
+                times = int(value.split(':')[0])
+                minutes = int(value.split(':')[1]) if len(value.split(':')) > 1 else 0
+                seconds = int(value.split(':')[2]) if len(value.split(':')) > 2 else 0
                 
-                if horas == 0 and minutos == 0 and segundos == 0:
-                    messagebox.showwarning("Intervalo inválido", "O intervalo não pode ser zero")
+                if times == 0 and minutes == 0 and seconds == 0:
+                    messagebox.showwarning("Invalid range", "Range cannot be zero")
                     return
             except ValueError:
-                messagebox.showwarning("value inválido", "Por favor, insira números válidos para horas, minutos e segundos")
+                messagebox.showwarning("invalid value", "Please enter valid numbers for times, minutes and seconds")
                 return
 
-        agendamento = f"{tipo}: {value}"
-        self.horarios[nome_var].insert(tk.END, agendamento)
-        self.agendamentos_salvos[nome_var].append(agendamento)
+        Scheduling = f"{tipo}: {value}"
+        self.timerios[nome_var].insert(tk.END, Scheduling)
+        self.Schedulings_salvos[nome_var].append(Scheduling)
         self.salvar_scheduler_parameter(nome_var, tipo, value)
-        print(f"✅ Agendamento Adicionado: {agendamento}")
+        print(f"✅ Scheduling Adicionado: {Scheduling}")
 
     def toggle_variavel(self, nome_var, var_bool):
         value = var_bool.get()
@@ -1003,10 +1001,10 @@ class InterfaceApp:
         if nome_var in self.executar_buttons:
             if value == 1:
                 self.executar_buttons[nome_var].pack(side='right', padx=5)
-                print(f"✔️ {nome_var} ativado!")
+                print(f"✔️ {nome_var} activated!")
             else:
                 self.executar_buttons[nome_var].pack_forget()
-                print(f"❌ {nome_var} desativado!")
+                print(f"❌ {nome_var} deactivated!")
 
     def criar_terminal(self):
         terminal_frame = ttk.LabelFrame(self.root, text="Terminal", padding=10)
@@ -1026,7 +1024,7 @@ class InterfaceApp:
         # Inicia o scheduler em uma thread separada
         scheduler_thread = threading.Thread(target=run_scheduler, daemon=True)
         scheduler_thread.start()
-        print("✅ Scheduler iniciado em thread separada")
+        print("✅ Scheduler started in separate thread")
 
 if __name__ == "__main__":
     root = tk.Tk()
@@ -1041,7 +1039,7 @@ if __name__ == "__main__":
             conn_business.close()
             cursorSQLBusiness.close()
             conn_business.close()
-            print("✅ Conexões com o banco de dados fechadas")
+            print("✅ Database connections closed")
         except:
             pass
         root.destroy()
